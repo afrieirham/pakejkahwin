@@ -64,11 +64,11 @@ export default function Home() {
           Your dream wedding starts here.
         </h1>
 
-        <div className="mt-8 flex w-full justify-center space-x-2">
+        <div className="mt-8 flex w-full items-center justify-center space-x-2">
           <select
             id="service"
             name="service"
-            className="mt-2 block w-full max-w-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
+            className="block w-full max-w-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
           >
             <option disabled selected>
               Service
@@ -85,7 +85,7 @@ export default function Home() {
               setState(e.target.value);
               setDistrict("");
             }}
-            className="mt-2 block w-full max-w-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
+            className="block w-full max-w-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
           >
             <option disabled selected value="">
               State
@@ -100,7 +100,7 @@ export default function Home() {
             disabled={!state}
             value={district}
             onChange={(e) => setDistrict(e.target.value)}
-            className="mt-2 block w-full max-w-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
+            className="block w-full max-w-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
           >
             <option disabled selected value="">
               District
@@ -109,6 +109,15 @@ export default function Home() {
               .find((s) => s.state === state)
               ?.district.map((d) => <option>{d}</option>)}
           </select>
+          <button
+            className="btn btn-ghost btn-sm capitalize"
+            onClick={() => {
+              setState("");
+              setDistrict("");
+            }}
+          >
+            Reset
+          </button>
         </div>
 
         <div className="mx-auto mb-16 mt-8 max-w-6xl ">
