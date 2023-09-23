@@ -3,13 +3,37 @@ import React from "react";
 
 const sourceSerif4 = Source_Serif_4({ subsets: ["latin"] });
 
+type TailwindColors =
+  | "slate"
+  | "gray"
+  | "zinc"
+  | "neutral"
+  | "stone"
+  | "red"
+  | "orange"
+  | "amber"
+  | "yellow"
+  | "lime"
+  | "green"
+  | "emerald"
+  | "teal"
+  | "cyan"
+  | "sky"
+  | "blue"
+  | "indigo"
+  | "violet"
+  | "purple"
+  | "fuchsia"
+  | "pink"
+  | "rose";
+
 export default function Home() {
   const services = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   ].map((_) => ({
     name: "Urban Park Hall",
     location: "Shah Alam, Selangor",
-    type: { name: "Wedding Hall", color: "green" },
+    type: { name: "Wedding Hall", color: "purple" as TailwindColors },
     image:
       "https://firebasestorage.googleapis.com/v0/b/pakejkahwincom.appspot.com/o/services%2F314825016_644859110439104_9041130988362878036_n.jpg?alt=media&token=8add9dc9-82ef-422c-849f-64e911a620bb",
     socials: [
@@ -98,12 +122,37 @@ function Badge({
   color,
   children,
 }: {
-  color: string;
+  color: TailwindColors;
   children: React.ReactNode;
 }) {
+  const colorVariants = {
+    slate: "ring-slate-600/20 bg-slate-50 text-slate-700",
+    gray: "ring-gray-600/20 bg-gray-50 text-gray-700",
+    zinc: "ring-zinc-600/20 bg-zinc-50 text-zinc-700",
+    neutral: "ring-neutral-600/20 bg-neutral-50 text-neutral-700",
+    stone: "ring-stone-600/20 bg-stone-50 text-stone-700",
+    red: "ring-red-600/20 bg-red-50 text-red-700",
+    orange: "ring-orange-600/20 bg-orange-50 text-orange-700",
+    amber: "ring-amber-600/20 bg-amber-50 text-amber-700",
+    yellow: "ring-yellow-600/20 bg-yellow-50 text-yellow-700",
+    lime: "ring-lime-600/20 bg-lime-50 text-lime-700",
+    green: "ring-green-600/20 bg-green-50 text-green-700",
+    emerald: "ring-emerald-600/20 bg-emerald-50 text-emerald-700",
+    teal: "ring-teal-600/20 bg-teal-50 text-teal-700",
+    cyan: "ring-cyan-600/20 bg-cyan-50 text-cyan-700",
+    sky: "ring-sky-600/20 bg-sky-50 text-sky-700",
+    blue: "ring-blue-600/20 bg-blue-50 text-blue-700",
+    indigo: "ring-indigo-600/20 bg-indigo-50 text-indigo-700",
+    violet: "ring-violet-600/20 bg-violet-50 text-violet-700",
+    purple: "ring-purple-600/20 bg-purple-50 text-purple-700",
+    fuchsia: "ring-fuchsia-600/20 bg-fuchsia-50 text-fuchsia-700",
+    pink: "ring-pink-600/20 bg-pink-50 text-pink-700",
+    rose: "ring-rose-600/20 bg-rose-50 text-rose-700",
+  };
+
   return (
     <span
-      className={`inline-flex ring-${color}-600/20 items-center rounded-md bg-${color}-50 px-2 py-1 text-xs font-medium text-${color}-700 ring-1 ring-inset`}
+      className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${colorVariants[color]}`}
     >
       {children}
     </span>
