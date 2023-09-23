@@ -7,18 +7,20 @@ import React, { useState } from "react";
 const sourceSerif4 = Source_Serif_4({ subsets: ["latin"] });
 
 export default function Home() {
+  const [service, setService] = useState("");
   const [state, setState] = useState("");
   const [district, setDistrict] = useState("");
 
   const services = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-  ].map((_) => ({
+    0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7, 0,
+    1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7,
+  ].map((n) => ({
     name: "Urban Park Hall",
     location: {
       district: "Shah Alam",
       state: "Selangor",
     },
-    type: { name: "Wedding Hall", color: "purple" as TailwindColors },
+    type: serviceType[n],
     image:
       "https://firebasestorage.googleapis.com/v0/b/pakejkahwincom.appspot.com/o/services%2Faustin-chen--WqFNA_8yMQ-unsplash.jpg?alt=media&token=832f0eba-790d-4190-89e6-4f15ea96ed0c",
     socials: [
@@ -68,13 +70,15 @@ export default function Home() {
           <select
             id="service"
             name="service"
+            value={service}
+            onChange={(e) => setService(e.target.value)}
             className="block w-full max-w-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
           >
-            <option disabled selected>
+            <option disabled selected value="">
               Service
             </option>
             {serviceType.map((type) => (
-              <option>{type}</option>
+              <option>{type.label}</option>
             ))}
           </select>
           <select
@@ -112,6 +116,7 @@ export default function Home() {
           <button
             className="btn btn-ghost btn-sm capitalize"
             onClick={() => {
+              setService("");
               setState("");
               setDistrict("");
             }}
@@ -150,7 +155,7 @@ export default function Home() {
                     </td>
                     <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                       <Badge color={service.type.color}>
-                        {service.type.name}
+                        {service.type.label}
                       </Badge>
                     </td>
                     <td className="relative flex items-center justify-end space-x-2 whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium">

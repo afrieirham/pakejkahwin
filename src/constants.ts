@@ -1,3 +1,5 @@
+import { Service } from "./types";
+
 export const locations = [
   {
     state: "Selangor",
@@ -53,11 +55,11 @@ export const locations = [
     ],
   },
   {
-    state: "Kuala Lumpur",
+    state: "WP Kuala Lumpur",
     district: ["Kuala Lumpur", "Setapak"],
   },
   {
-    state: "Putrajaya",
+    state: "WP Putrajaya",
     district: ["Putrajaya"],
   },
   {
@@ -475,7 +477,7 @@ export const locations = [
     ],
   },
   {
-    state: "Labuan",
+    state: "WP Labuan",
     district: ["Labuan"],
   },
   {
@@ -518,12 +520,12 @@ export const locations = [
 ];
 
 export const serviceType = [
-  "Venue",
-  "Makeup Artist",
-  "Photographer",
-  "Dress Rental",
-  "Door Gift",
-  "Pelamin & Deco",
-  "Digital Card",
-  "Physical Card",
-];
+  { id: 1, label: "Venue", color: "green" },
+  { id: 2, label: "Makeup Artist", color: "purple" },
+  { id: 3, label: "Photographer", color: "blue" },
+  { id: 4, label: "Dress Rental", color: "orange" },
+  { id: 5, label: "Door Gift", color: "teal" },
+  { id: 6, label: "Pelamin & Deco", color: "fuchsia" },
+  { id: 7, label: "Softwares", color: "yellow" },
+  { id: 8, label: "Invitation Card", color: "sky" },
+] as Service[];

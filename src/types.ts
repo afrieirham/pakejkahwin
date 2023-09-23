@@ -21,3 +21,5 @@ export type TailwindColors =
   | "fuchsia"
   | "pink"
   | "rose";
+
+export type Service = { id: number; label: string; color: TailwindColors };
