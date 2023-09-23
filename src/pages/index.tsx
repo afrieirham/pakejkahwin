@@ -1,55 +1,21 @@
 import { locations, serviceType } from "@/constants";
-import { TailwindColors } from "@/types";
+import { ServiceResponse, TailwindColors } from "@/types";
 import { Source_Serif_4 } from "next/font/google";
 import Image from "next/image";
 import React, { useState } from "react";
+import useSWR, { Fetcher } from "swr";
 
 const sourceSerif4 = Source_Serif_4({ subsets: ["latin"] });
+
+const fetcher: Fetcher<ServiceResponse[], string> = (url: string) =>
+  fetch(url).then((r) => r.json());
 
 export default function Home() {
   const [service, setService] = useState("");
   const [state, setState] = useState("");
   const [district, setDistrict] = useState("");
 
-  const services = [
-    0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7, 0,
-    1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7,
-  ].map((n) => ({
-    name: "Dewan MBSA",
-    location: {
-      district: "Shah Alam",
-      state: "Selangor",
-    },
-    type: serviceType[n],
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/pakejkahwincom.appspot.com/o/services%2F314825016_644859110439104_9041130988362878036_n.jpg?alt=media&token=8add9dc9-82ef-422c-849f-64e911a620bb",
-    socials: [
-      {
-        name: "instagram",
-        link: "https://www.instagram.com/urbanparkhall.my/",
-      },
-      {
-        name: "whatsapp",
-        link: "https://wa.me/60121231234",
-      },
-      {
-        name: "maps",
-        link: "https://wa.me/60121231234",
-      },
-      {
-        name: "tiktok",
-        link: "https://wa.me/60121231234",
-      },
-      {
-        name: "website",
-        link: "https://wa.me/60121231234",
-      },
-      {
-        name: "facebook",
-        link: "https://wa.me/60121231234",
-      },
-    ],
-  }));
+  const { data: services } = useSWR("/api/services", fetcher);
 
   return (
     <div className="flex flex-col">
@@ -135,7 +101,7 @@ export default function Home() {
           <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
             <table className="min-w-full divide-y divide-gray-300">
               <tbody className="divide-y divide-gray-200 bg-white">
-                {services.map((service) => (
+                {services?.map((service) => (
                   <tr key={service.image}>
                     <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm ">
                       <div className="flex items-center">
@@ -160,13 +126,14 @@ export default function Home() {
                       </div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                      <Badge color={service.type.color}>
-                        {service.type.label}
+                      <Badge color={serviceType[service.type].color}>
+                        {serviceType[service.type].label}
                       </Badge>
                     </td>
                     <td className="relative flex items-center justify-end space-x-2 whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium">
                       {service.socials
                         .sort((a, b) => a.name.localeCompare(b.name))
+                        .filter((s) => !!s.link)
                         .map((social) => (
                           <a
                             href={social.link}

@@ -23,3 +23,22 @@ export type TailwindColors =
   | "rose";
 
 export type Service = { id: number; label: string; color: TailwindColors };
+
+export interface ServiceResponse {
+  id: number;
+  name: string;
+  location: Location;
+  type: number;
+  image: string;
+  socials: Social[];
+}
+
+export interface Location {
+  district: string;
+  state: string;
+}
+
+export interface Social {
+  name: string;
+  link: string;
+}
