@@ -29,12 +29,4 @@
   h6 {
     @apply text-lg;
   }
-
-  p {
-    @apply text-[#6D705E];
-  }
-
-  .subtitle {
-    @apply text-[#A0A48E];
-  }
 }
