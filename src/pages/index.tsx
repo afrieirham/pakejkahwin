@@ -1,11 +1,15 @@
+import { locations, serviceType } from "@/constants";
 import { TailwindColors } from "@/types";
 import { Source_Serif_4 } from "next/font/google";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 const sourceSerif4 = Source_Serif_4({ subsets: ["latin"] });
 
 export default function Home() {
+  const [state, setState] = useState("");
+  const [district, setDistrict] = useState("");
+
   const services = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   ].map((_) => ({
@@ -44,6 +48,7 @@ export default function Home() {
       },
     ],
   }));
+
   return (
     <div className="flex flex-col">
       <header className="relative flex w-full items-center justify-between p-8">
@@ -58,6 +63,53 @@ export default function Home() {
         <h1 className={`${sourceSerif4.className} text-center font-semibold`}>
           Your dream wedding starts here.
         </h1>
+
+        <div className="mt-8 flex w-full justify-center space-x-2">
+          <select
+            id="service"
+            name="service"
+            className="mt-2 block w-full max-w-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
+          >
+            <option disabled selected>
+              Service
+            </option>
+            {serviceType.map((type) => (
+              <option>{type}</option>
+            ))}
+          </select>
+          <select
+            id="state"
+            name="state"
+            value={state}
+            onChange={(e) => {
+              setState(e.target.value);
+              setDistrict("");
+            }}
+            className="mt-2 block w-full max-w-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
+          >
+            <option disabled selected value="">
+              State
+            </option>
+            {locations.map((location) => (
+              <option>{location.state}</option>
+            ))}
+          </select>
+          <select
+            id="district"
+            name="district"
+            disabled={!state}
+            value={district}
+            onChange={(e) => setDistrict(e.target.value)}
+            className="mt-2 block w-full max-w-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
+          >
+            <option disabled selected value="">
+              District
+            </option>
+            {locations
+              .find((s) => s.state === state)
+              ?.district.map((d) => <option>{d}</option>)}
+          </select>
+        </div>
 
         <div className="mx-auto mb-16 mt-8 max-w-6xl ">
           <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
@@ -98,7 +150,7 @@ export default function Home() {
                         .map((social) => (
                           <a
                             href={social.link}
-                            className="mt-2"
+                            className="mt-2 rounded outline-none focus:ring-2 focus:ring-primary"
                             target="_blank"
                           >
                             <SocialIcon name={social.name} />
