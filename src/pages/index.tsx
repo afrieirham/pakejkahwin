@@ -15,14 +15,14 @@ export default function Home() {
     0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7, 0,
     1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7,
   ].map((n) => ({
-    name: "Urban Park Hall",
+    name: "Dewan MBSA",
     location: {
       district: "Shah Alam",
       state: "Selangor",
     },
     type: serviceType[n],
     image:
-      "https://firebasestorage.googleapis.com/v0/b/pakejkahwincom.appspot.com/o/services%2Faustin-chen--WqFNA_8yMQ-unsplash.jpg?alt=media&token=832f0eba-790d-4190-89e6-4f15ea96ed0c",
+      "https://firebasestorage.googleapis.com/v0/b/pakejkahwincom.appspot.com/o/services%2F314825016_644859110439104_9041130988362878036_n.jpg?alt=media&token=8add9dc9-82ef-422c-849f-64e911a620bb",
     socials: [
       {
         name: "instagram",
@@ -66,7 +66,13 @@ export default function Home() {
           Your dream wedding starts here.
         </h1>
 
-        <div className="mt-8 flex w-full items-center justify-center space-x-2">
+        <div className="mx-auto mt-8 flex w-full max-w-4xl items-center justify-center space-x-2">
+          <input
+            name="search"
+            id="search"
+            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+            placeholder="Search"
+          />
           <select
             id="service"
             name="service"
@@ -135,7 +141,7 @@ export default function Home() {
                       <div className="flex items-center">
                         <div className="relative h-11 w-11 flex-shrink-0">
                           <Image
-                            className="rounded-full border border-stone-800 object-cover object-center"
+                            className="rounded-full border-2 border-primary object-cover object-center"
                             src={service.image}
                             alt={`${service.name} logo`}
                             fill
