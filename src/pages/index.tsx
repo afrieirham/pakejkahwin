@@ -1,5 +1,6 @@
 import { TailwindColors } from "@/types";
 import { Source_Serif_4 } from "next/font/google";
+import Image from "next/image";
 import React from "react";
 
 const sourceSerif4 = Source_Serif_4({ subsets: ["latin"] });
@@ -12,7 +13,7 @@ export default function Home() {
     location: "Shah Alam, Selangor",
     type: { name: "Wedding Hall", color: "purple" as TailwindColors },
     image:
-      "https://firebasestorage.googleapis.com/v0/b/pakejkahwincom.appspot.com/o/services%2F314825016_644859110439104_9041130988362878036_n.jpg?alt=media&token=8add9dc9-82ef-422c-849f-64e911a620bb",
+      "https://firebasestorage.googleapis.com/v0/b/pakejkahwincom.appspot.com/o/services%2Faustin-chen--WqFNA_8yMQ-unsplash.jpg?alt=media&token=832f0eba-790d-4190-89e6-4f15ea96ed0c",
     socials: [
       {
         name: "instagram",
@@ -42,14 +43,19 @@ export default function Home() {
   }));
   return (
     <div className="flex flex-col">
-      <header className="flex w-full items-center justify-between p-8">
-        <img src="/logo.png" className="h-[52px]" />
+      <header className="relative flex w-full items-center justify-between p-8">
+        <img
+          src="/logo.png"
+          className="h-[52px] "
+          alt="PackageKahwin.com logo"
+        />
         <button className="btn-primary btn">Submit Service</button>
       </header>
       <main className="pt-4">
         <h1 className={`${sourceSerif4.className} text-center font-semibold`}>
           Your dream wedding starts here.
         </h1>
+
         <div className="mx-auto mb-16 mt-8 max-w-6xl ">
           <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
             <table className="min-w-full divide-y divide-gray-300">
@@ -58,11 +64,12 @@ export default function Home() {
                   <tr key={service.image}>
                     <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm ">
                       <div className="flex items-center">
-                        <div className="h-11 w-11 flex-shrink-0">
-                          <img
-                            className="h-11 w-11 rounded-full border"
+                        <div className="relative h-11 w-11 flex-shrink-0">
+                          <Image
+                            className="rounded-full border border-stone-800 object-cover object-center"
                             src={service.image}
-                            alt=""
+                            alt={`${service.name} logo`}
+                            fill
                           />
                         </div>
                         <div className="ml-4">
@@ -80,7 +87,7 @@ export default function Home() {
                         {service.type.name}
                       </Badge>
                     </td>
-                    <td className="relative flex items-center justify-end space-x-1 whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium">
+                    <td className="relative flex items-center justify-end space-x-2 whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium">
                       {service.socials
                         .sort((a, b) => a.name.localeCompare(b.name))
                         .map((social) => (
