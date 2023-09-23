@@ -10,7 +10,10 @@ export default function Home() {
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   ].map((_) => ({
     name: "Urban Park Hall",
-    location: "Shah Alam, Selangor",
+    location: {
+      district: "Shah Alam",
+      state: "Selangor",
+    },
     type: { name: "Wedding Hall", color: "purple" as TailwindColors },
     image:
       "https://firebasestorage.googleapis.com/v0/b/pakejkahwincom.appspot.com/o/services%2Faustin-chen--WqFNA_8yMQ-unsplash.jpg?alt=media&token=832f0eba-790d-4190-89e6-4f15ea96ed0c",
@@ -80,7 +83,9 @@ export default function Home() {
                       </div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                      <div className="text-gray-900">{service.location}</div>
+                      <div className="text-gray-900">
+                        {service.location.district}, {service.location.state}
+                      </div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                       <Badge color={service.type.color}>
