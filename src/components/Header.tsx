@@ -43,7 +43,7 @@ function Header() {
           <ul className="menu h-full w-80 gap-2 bg-base-200 p-4 text-base-content">
             <Link
               href="/submit"
-              className="btn-primary btn btn-sm text-xs normal-case"
+              className="btn-primary btn text-xs normal-case"
             >
               Submit Service
             </Link>
