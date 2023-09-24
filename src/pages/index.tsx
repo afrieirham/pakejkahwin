@@ -54,20 +54,24 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <header className="relative flex w-full items-center justify-between p-8">
+      <header className="relative w-full items-center justify-between p-8 md:flex">
         <img
           src="/logo.png"
-          className="h-[52px] "
+          className="h-[30px] md:h-[52px]"
           alt="PackageKahwin.com logo"
         />
-        <button className="btn-primary btn">Submit Service</button>
+        <button className="btn-primary btn hidden md:block">
+          Submit Service
+        </button>
       </header>
       <main className="pt-4">
-        <h1 className={`${sourceSerif4.className} text-center font-semibold`}>
+        <h1
+          className={`${sourceSerif4.className} px-4 text-center text-3xl font-semibold md:text-5xl`}
+        >
           Your dream wedding starts here.
         </h1>
 
-        <div className="mx-auto mt-8 flex w-full max-w-4xl items-center justify-center space-x-2">
+        <div className="m-4 space-y-4 rounded-md bg-white p-4 shadow md:mx-auto md:mt-8 md:flex md:w-full md:max-w-4xl md:items-center md:justify-center md:space-x-2 md:space-y-0 md:bg-transparent md:shadow-none">
           <input
             id="search"
             name="search"
@@ -82,7 +86,7 @@ export default function Home() {
             name="service"
             value={service}
             onChange={(e) => setService(e.target.value)}
-            className="block w-full max-w-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
+            className="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
           >
             <option disabled selected value="">
               Service
@@ -99,7 +103,7 @@ export default function Home() {
               setState(e.target.value);
               setDistrict("");
             }}
-            className="block w-full max-w-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
+            className="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
           >
             <option disabled selected value="">
               State
@@ -114,7 +118,7 @@ export default function Home() {
             disabled={!state}
             value={district}
             onChange={(e) => setDistrict(e.target.value)}
-            className="block w-full max-w-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
+            className="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
           >
             <option disabled selected value="">
               District
@@ -123,7 +127,10 @@ export default function Home() {
               .find((s) => s.state === state)
               ?.district.map((d) => <option>{d}</option>)}
           </select>
-          <button className="btn btn-ghost btn-sm capitalize" onClick={onReset}>
+          <button
+            className="btn btn-ghost btn-sm w-full capitalize md:w-auto"
+            onClick={onReset}
+          >
             Reset
           </button>
         </div>
