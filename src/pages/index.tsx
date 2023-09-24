@@ -2,6 +2,7 @@ import { locations, serviceType } from "@/constants";
 import { ServiceResponse, TailwindColors } from "@/types";
 import { Source_Serif_4 } from "next/font/google";
 import Image from "next/image";
+import queryString from "query-string";
 import React, { ChangeEvent, useState } from "react";
 import useSWR, { Fetcher } from "swr";
 
@@ -16,7 +17,16 @@ export default function Home() {
   const [state, setState] = useState("");
   const [district, setDistrict] = useState("");
 
-  const { data: services } = useSWR(`/api/services?search=${search}`, fetcher);
+  const query = queryString.stringify(
+    {
+      q: search,
+      "location.state": state,
+      "location.district": district,
+    },
+    { skipEmptyString: true, skipNull: true },
+  );
+
+  const { data: services } = useSWR(`/api/services?${query}`, fetcher);
 
   let filterTimeout: NodeJS.Timeout;
   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +35,12 @@ export default function Home() {
     filterTimeout = setTimeout(() => {
       setSearch(e.target.value);
     }, 500);
+  };
+
+  const onReset = () => {
+    setService("");
+    setState("");
+    setDistrict("");
   };
 
   return (
@@ -96,14 +112,7 @@ export default function Home() {
               .find((s) => s.state === state)
               ?.district.map((d) => <option>{d}</option>)}
           </select>
-          <button
-            className="btn btn-ghost btn-sm capitalize"
-            onClick={() => {
-              setService("");
-              setState("");
-              setDistrict("");
-            }}
-          >
+          <button className="btn btn-ghost btn-sm capitalize" onClick={onReset}>
             Reset
           </button>
         </div>
