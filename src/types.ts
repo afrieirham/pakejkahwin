@@ -28,7 +28,7 @@ export interface ServiceResponse {
   id: number;
   name: string;
   location: Location;
-  type: number;
+  typeId: number;
   image: string;
   socials: Social[];
 }

@@ -1,9 +1,9 @@
-import { locations, serviceType } from "@/constants";
-import { ServiceResponse, TailwindColors } from "@/types";
+import { locations, servicesType } from "@/constants";
+import { ServiceResponse } from "@/types";
 import { Source_Serif_4 } from "next/font/google";
 import Image from "next/image";
 import queryString from "query-string";
-import React, { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import useSWR, { Fetcher } from "swr";
 
 const sourceSerif4 = Source_Serif_4({ subsets: ["latin"] });
@@ -24,6 +24,7 @@ export default function Home() {
       q: search,
       "location.state": state,
       "location.district": district,
+      typeId: servicesType.find((s) => s.label === service)?.id,
     },
     { skipEmptyString: true, skipNull: true },
   );
@@ -86,7 +87,7 @@ export default function Home() {
             <option disabled selected value="">
               Service
             </option>
-            {serviceType.map((type) => (
+            {servicesType.map((type) => (
               <option>{type.label}</option>
             ))}
           </select>
@@ -156,9 +157,7 @@ export default function Home() {
                       </div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                      <Badge color={serviceType[service.type].color}>
-                        {serviceType[service.type].label}
-                      </Badge>
+                      <Badge typeId={service.typeId} />
                     </td>
                     <td className="relative flex items-center justify-end space-x-2 whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium">
                       {service.socials
@@ -188,13 +187,7 @@ export default function Home() {
   );
 }
 
-function Badge({
-  color,
-  children,
-}: {
-  color: TailwindColors;
-  children: React.ReactNode;
-}) {
+function Badge({ typeId }: { typeId: number }) {
   const colorVariants = {
     slate: "ring-slate-600/20 bg-slate-50 text-slate-700",
     gray: "ring-gray-600/20 bg-gray-50 text-gray-700",
@@ -220,11 +213,15 @@ function Badge({
     rose: "ring-rose-600/20 bg-rose-50 text-rose-700",
   };
 
+  const service = servicesType.find((s) => s.id === typeId)!;
+
   return (
     <span
-      className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${colorVariants[color]}`}
+      className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${
+        colorVariants[service?.color]
+      }`}
     >
-      {children}
+      {service?.label}
     </span>
   );
 }

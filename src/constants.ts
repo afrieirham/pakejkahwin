@@ -519,7 +519,7 @@ export const locations = [
   },
 ];
 
-export const serviceType = [
+export const servicesType = [
   { id: 1, label: "Venue", color: "green" },
   { id: 2, label: "Makeup Artist", color: "purple" },
   { id: 3, label: "Photographer", color: "blue" },
