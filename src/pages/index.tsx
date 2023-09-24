@@ -179,18 +179,12 @@ export default function Home({
                     <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm ">
                       <div className="flex items-center">
                         <div className="relative h-11 w-11 flex-shrink-0">
-                          <Image
-                            className="rounded-full border-2 border-primary object-cover object-center"
-                            src={service.image}
-                            alt={`${service.name} logo`}
-                            fill
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          />
+                          <ServiceLogo service={service} />
                         </div>
                         <div className="ml-4">
-                          <div className="font-medium text-gray-900">
+                          <p className="font-medium text-gray-900">
                             {service.name}
-                          </div>
+                          </p>
                         </div>
                       </div>
                     </td>
@@ -240,13 +234,7 @@ export default function Home({
                   </p>
                 </div>
                 <div className="relative h-11 w-11 flex-shrink-0">
-                  <Image
-                    className="rounded-full border-2 border-primary object-cover object-center"
-                    src={service.image}
-                    alt={`${service.name} logo`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
+                  <ServiceLogo service={service} />
                 </div>
               </div>
               <div className="mt-2">
@@ -317,6 +305,16 @@ function Badge({ typeId }: { typeId: number }) {
     </span>
   );
 }
+
+const ServiceLogo = ({ service }: { service: ServiceResponse }) => (
+  <Image
+    className="rounded-full border-2 border-primary object-cover object-center"
+    src={service.image}
+    alt={`${service.name} logo`}
+    fill
+    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+  />
+);
 
 const SocialIcon = ({ name }: { name: string }) => {
   const size = "h-6 w-6";
