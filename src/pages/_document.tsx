@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
@@ -5,6 +6,7 @@ export default function Document() {
     <Html lang="en" data-theme="retro">
       <Head />
       <body>
+        <Header />
         <Main />
         <NextScript />
       </body>

@@ -3,6 +3,7 @@ import { locations, servicesType } from "@/constants";
 import { ServiceResponse } from "@/types";
 import { GetStaticProps, InferGetServerSidePropsType } from "next";
 import { Source_Serif_4 } from "next/font/google";
+import Head from "next/head";
 import Image from "next/image";
 import queryString from "query-string";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
@@ -86,47 +87,9 @@ export default function Home({
 
   return (
     <div className="flex flex-col">
-      <SEOHead title={title} description={description} path="/" />
-      <header className="relative flex w-full items-center justify-between p-4">
-        <img
-          src="/logo.png"
-          className="h-[30px] pl-2 md:h-[52px]"
-          alt="PackageKahwin.com logo"
-        />
-        <button className="btn-primary btn hidden normal-case md:block">
-          Submit Service
-        </button>
-        <div className="drawer drawer-end m-0 w-auto p-0 md:hidden">
-          <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-
-          <div className="drawer-content">
-            <label htmlFor="my-drawer" className="btn btn-ghost">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-menu-2 h-6 w-6 fill-none stroke-primary"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M4 6l16 0" />
-                <path d="M4 12l16 0" />
-                <path d="M4 18l16 0" />
-              </svg>
-            </label>
-          </div>
-          <div className="drawer-side z-20">
-            <label htmlFor="my-drawer" className="drawer-overlay"></label>
-
-            <ul className="menu h-full w-80 gap-2 bg-base-200 p-4 text-base-content">
-              <button className="btn-primary btn btn-sm text-xs normal-case">
-                Submit Service
-              </button>
-            </ul>
-          </div>
-        </div>
-      </header>
+      <Head>
+        <SEOHead title={title} description={description} path="/" />
+      </Head>
       <main className="md:mt-4">
         <h1
           className={`${sourceSerif4.className} px-4 text-center text-3xl font-semibold md:text-5xl`}

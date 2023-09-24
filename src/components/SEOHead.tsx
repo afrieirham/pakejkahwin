@@ -1,5 +1,3 @@
-import Head from "next/head";
-
 function SEOHead({
   title,
   description,
@@ -10,7 +8,7 @@ function SEOHead({
   path: string;
 }) {
   return (
-    <Head>
+    <>
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -31,7 +29,7 @@ function SEOHead({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content="https://pakejkahwin.com/og.png" />
-    </Head>
+    </>
   );
 }
 
