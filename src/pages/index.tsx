@@ -104,6 +104,7 @@ export default function Home({
           Your dream wedding starts here.
         </h1>
 
+        {/* list controls */}
         <div className="m-4 mt-8 space-y-4 rounded-md bg-white p-4 shadow md:mx-auto md:mt-8 md:flex md:w-full md:max-w-4xl md:items-center md:justify-center md:space-x-2 md:space-y-0 md:bg-transparent md:shadow-none">
           <input
             id="search"
@@ -121,11 +122,11 @@ export default function Home({
             onChange={(e) => setService(e.target.value)}
             className="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
           >
-            <option disabled selected value="">
+            <option disabled value="">
               Service
             </option>
             {servicesType.map((type) => (
-              <option>{type.label}</option>
+              <option key={type.id}>{type.label}</option>
             ))}
           </select>
           <select
@@ -138,11 +139,11 @@ export default function Home({
             }}
             className="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
           >
-            <option disabled selected value="">
+            <option disabled value="">
               State
             </option>
             {locations.map((location) => (
-              <option>{location.state}</option>
+              <option key={location.state}>{location.state}</option>
             ))}
           </select>
           <select
@@ -153,12 +154,12 @@ export default function Home({
             onChange={(e) => setDistrict(e.target.value)}
             className="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
           >
-            <option disabled selected value="">
+            <option disabled value="">
               District
             </option>
             {locations
               .find((s) => s.state === state)
-              ?.district.map((d) => <option>{d}</option>)}
+              ?.district.map((d) => <option key={d}>{d}</option>)}
           </select>
           <button
             className="btn btn-ghost btn-sm w-full capitalize md:w-auto"
@@ -174,7 +175,7 @@ export default function Home({
             <table className="min-w-full divide-y divide-gray-300">
               <tbody className="divide-y divide-gray-200 bg-white">
                 {services?.map((service) => (
-                  <tr key={service.image}>
+                  <tr key={service.id}>
                     <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm ">
                       <div className="flex items-center">
                         <div className="relative h-11 w-11 flex-shrink-0">
@@ -203,6 +204,7 @@ export default function Home({
                         .sort((a, b) => a.name.localeCompare(b.name))
                         .map((social) => (
                           <a
+                            key={social.name}
                             href={social.link ? social.link : undefined}
                             className={`mt-2 rounded outline-none focus:ring-2 focus:ring-primary ${
                               social.link
@@ -225,7 +227,10 @@ export default function Home({
         {/* mobile view */}
         <div className="mx-4 mb-16 mt-6 flex flex-col space-y-2 md:hidden">
           {services?.map((service) => (
-            <div className="w-full rounded-md bg-white p-4 shadow">
+            <div
+              key={service.id}
+              className="w-full rounded-md bg-white p-4 shadow"
+            >
               <div className="flex justify-between">
                 <div>
                   <p className="font-medium text-gray-900">{service.name}</p>
@@ -251,6 +256,7 @@ export default function Home({
                   .filter((s) => !!s.link)
                   .map((social) => (
                     <a
+                      key={social.link}
                       href={social.link ? social.link : undefined}
                       className={`mt-2 rounded outline-none focus:ring-2 focus:ring-primary ${
                         social.link
