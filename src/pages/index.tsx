@@ -64,14 +64,14 @@ export default function Home() {
           Submit Service
         </button>
       </header>
-      <main className="pt-4">
+      <main className="md:mt-4">
         <h1
           className={`${sourceSerif4.className} px-4 text-center text-3xl font-semibold md:text-5xl`}
         >
           Your dream wedding starts here.
         </h1>
 
-        <div className="m-4 space-y-4 rounded-md bg-white p-4 shadow md:mx-auto md:mt-8 md:flex md:w-full md:max-w-4xl md:items-center md:justify-center md:space-x-2 md:space-y-0 md:bg-transparent md:shadow-none">
+        <div className="m-4 mt-8 space-y-4 rounded-md bg-white p-4 shadow md:mx-auto md:mt-8 md:flex md:w-full md:max-w-4xl md:items-center md:justify-center md:space-x-2 md:space-y-0 md:bg-transparent md:shadow-none">
           <input
             id="search"
             name="search"
@@ -135,7 +135,8 @@ export default function Home() {
           </button>
         </div>
 
-        <div className="mx-auto mb-16 mt-8 max-w-6xl ">
+        {/* desktop view */}
+        <div className="mx-auto mb-16 mt-8 hidden max-w-6xl px-4 md:block">
           <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
             <table className="min-w-full divide-y divide-gray-300">
               <tbody className="divide-y divide-gray-200 bg-white">
@@ -188,6 +189,51 @@ export default function Home() {
               </tbody>
             </table>
           </div>
+        </div>
+
+        {/* mobile view */}
+        <div className="mx-4 mb-16 mt-6 flex flex-col space-y-2 md:hidden">
+          {services?.map((service) => (
+            <div className="w-full rounded-md bg-white p-4 shadow">
+              <div className="flex justify-between">
+                <div>
+                  <p className="font-medium text-gray-900">{service.name}</p>
+                  <p className="text-gray-600">
+                    {service.location.district}, {service.location.state}
+                  </p>
+                </div>
+                <div className="relative h-11 w-11 flex-shrink-0">
+                  <Image
+                    className="rounded-full border-2 border-primary object-cover object-center"
+                    src={service.image}
+                    alt={`${service.name} logo`}
+                    fill
+                  />
+                </div>
+              </div>
+              <div className="mt-2">
+                <Badge typeId={service.typeId} />
+              </div>
+              <div className="mt-6 flex space-x-1">
+                {service.socials
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .filter((s) => !!s.link)
+                  .map((social) => (
+                    <a
+                      href={social.link ? social.link : undefined}
+                      className={`mt-2 rounded outline-none focus:ring-2 focus:ring-primary ${
+                        social.link
+                          ? "opacity-100"
+                          : "cursor-not-allowed opacity-20"
+                      }`}
+                      target="_blank"
+                    >
+                      <SocialIcon name={social.name} />
+                    </a>
+                  ))}
+              </div>
+            </div>
+          ))}
         </div>
       </main>
     </div>
