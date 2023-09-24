@@ -3,7 +3,6 @@ import { locations, servicesType } from "@/constants";
 import { ServiceResponse } from "@/types";
 import { GetStaticProps, InferGetServerSidePropsType } from "next";
 import { Source_Serif_4 } from "next/font/google";
-import Head from "next/head";
 import Image from "next/image";
 import queryString from "query-string";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
@@ -87,9 +86,7 @@ export default function Home({
 
   return (
     <div className="flex flex-col">
-      <Head>
-        <SEOHead title={title} description={description} path="/" />
-      </Head>
+      <SEOHead title={title} description={description} path="/" />
       <main className="md:mt-4">
         <h1
           className={`${sourceSerif4.className} px-4 text-center text-3xl font-semibold md:text-5xl`}
