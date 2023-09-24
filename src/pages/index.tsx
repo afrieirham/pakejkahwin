@@ -1,3 +1,4 @@
+import SEOHead from "@/components/SEOHead";
 import { locations, servicesType } from "@/constants";
 import { ServiceResponse } from "@/types";
 import { GetStaticProps, InferGetServerSidePropsType } from "next";
@@ -78,8 +79,14 @@ export default function Home({
     }
   }, [data]);
 
+  const title =
+    "PakejKahwin.com – Your One-Stop Wedding Services Hub in Malaysia!";
+  const description =
+    "The most comprehensive list for wedding services in Malayisa. Find the best wedding venue, makeup artist, goodies & door gifts, wedding photographer, dress rental, pelamin decorations, invitation card and more!";
+
   return (
     <div className="flex flex-col">
+      <SEOHead title={title} description={description} path="/" />
       <header className="relative w-full items-center justify-between p-8 md:flex">
         <img
           src="/logo.png"
