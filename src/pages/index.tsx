@@ -3,7 +3,7 @@ import { ServiceResponse, TailwindColors } from "@/types";
 import { Source_Serif_4 } from "next/font/google";
 import Image from "next/image";
 import queryString from "query-string";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useRef, useState } from "react";
 import useSWR, { Fetcher } from "swr";
 
 const sourceSerif4 = Source_Serif_4({ subsets: ["latin"] });
@@ -12,6 +12,8 @@ const fetcher: Fetcher<ServiceResponse[], string> = (url: string) =>
   fetch(url).then((r) => r.json());
 
 export default function Home() {
+  const searchRef = useRef<HTMLInputElement>(null);
+
   const [search, setSearch] = useState("");
   const [service, setService] = useState("");
   const [state, setState] = useState("");
@@ -38,6 +40,12 @@ export default function Home() {
   };
 
   const onReset = () => {
+    // clear uncontrolled search input
+    if (searchRef.current) {
+      searchRef.current.value = "";
+    }
+
+    setSearch("");
     setService("");
     setState("");
     setDistrict("");
@@ -62,6 +70,8 @@ export default function Home() {
           <input
             id="search"
             name="search"
+            type="search"
+            ref={searchRef}
             onChange={onSearch}
             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
             placeholder="Search"
