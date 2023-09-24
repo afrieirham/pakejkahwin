@@ -160,9 +160,7 @@ export default function Home() {
                       </div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                      <div className="text-gray-900">
-                        {service.location.district}, {service.location.state}
-                      </div>
+                      {service.location.district}, {service.location.state}
                     </td>
                     <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                       <Badge typeId={service.typeId} />
@@ -198,7 +196,7 @@ export default function Home() {
               <div className="flex justify-between">
                 <div>
                   <p className="font-medium text-gray-900">{service.name}</p>
-                  <p className="text-gray-600">
+                  <p className="text-sm text-gray-500">
                     {service.location.district}, {service.location.state}
                   </p>
                 </div>
