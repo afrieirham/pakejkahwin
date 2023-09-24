@@ -133,11 +133,14 @@ export default function Home() {
                     <td className="relative flex items-center justify-end space-x-2 whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium">
                       {service.socials
                         .sort((a, b) => a.name.localeCompare(b.name))
-                        .filter((s) => !!s.link)
                         .map((social) => (
                           <a
-                            href={social.link}
-                            className="mt-2 rounded outline-none focus:ring-2 focus:ring-primary"
+                            href={social.link ? social.link : undefined}
+                            className={`mt-2 rounded outline-none focus:ring-2 focus:ring-primary ${
+                              social.link
+                                ? "opacity-100"
+                                : "cursor-not-allowed opacity-20"
+                            }`}
                             target="_blank"
                           >
                             <SocialIcon name={social.name} />
