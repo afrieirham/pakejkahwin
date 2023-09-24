@@ -7,6 +7,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ServiceResponse[]>,
 ) {
-  const data = await fetch(`${apiUrl}`).then((r) => r.json());
+  const { search } = req.query;
+  const data = await fetch(`${apiUrl}?q=${search}`).then((r) => r.json());
   res.status(200).json(data as ServiceResponse[]);
 }

@@ -2,7 +2,7 @@ import { locations, serviceType } from "@/constants";
 import { ServiceResponse, TailwindColors } from "@/types";
 import { Source_Serif_4 } from "next/font/google";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import useSWR, { Fetcher } from "swr";
 
 const sourceSerif4 = Source_Serif_4({ subsets: ["latin"] });
@@ -11,11 +11,21 @@ const fetcher: Fetcher<ServiceResponse[], string> = (url: string) =>
   fetch(url).then((r) => r.json());
 
 export default function Home() {
+  const [search, setSearch] = useState("");
   const [service, setService] = useState("");
   const [state, setState] = useState("");
   const [district, setDistrict] = useState("");
 
-  const { data: services } = useSWR("/api/services", fetcher);
+  const { data: services } = useSWR(`/api/services?search=${search}`, fetcher);
+
+  let filterTimeout: NodeJS.Timeout;
+  const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    clearTimeout(filterTimeout);
+
+    filterTimeout = setTimeout(() => {
+      setSearch(e.target.value);
+    }, 500);
+  };
 
   return (
     <div className="flex flex-col">
@@ -34,8 +44,9 @@ export default function Home() {
 
         <div className="mx-auto mt-8 flex w-full max-w-4xl items-center justify-center space-x-2">
           <input
-            name="search"
             id="search"
+            name="search"
+            onChange={onSearch}
             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
             placeholder="Search"
           />
