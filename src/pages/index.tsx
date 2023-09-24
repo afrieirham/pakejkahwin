@@ -184,6 +184,7 @@ export default function Home({
                             src={service.image}
                             alt={`${service.name} logo`}
                             fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           />
                         </div>
                         <div className="ml-4">
@@ -244,6 +245,7 @@ export default function Home({
                     src={service.image}
                     alt={`${service.name} logo`}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
               </div>
