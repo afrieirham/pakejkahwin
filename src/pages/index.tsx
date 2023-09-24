@@ -1,9 +1,10 @@
 import { locations, servicesType } from "@/constants";
 import { ServiceResponse } from "@/types";
+import { GetStaticProps, InferGetServerSidePropsType } from "next";
 import { Source_Serif_4 } from "next/font/google";
 import Image from "next/image";
 import queryString from "query-string";
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import useSWR, { Fetcher } from "swr";
 
 const sourceSerif4 = Source_Serif_4({ subsets: ["latin"] });
@@ -11,9 +12,26 @@ const sourceSerif4 = Source_Serif_4({ subsets: ["latin"] });
 const fetcher: Fetcher<ServiceResponse[], string> = (url: string) =>
   fetch(url).then((r) => r.json());
 
-export default function Home() {
+export const getStaticProps: GetStaticProps<{
+  initialServices: ServiceResponse[];
+}> = async () => {
+  const res = await fetch("https://api.pakejkahwin.com/services");
+  const initialServices: ServiceResponse[] = await res.json();
+  return {
+    props: {
+      initialServices: initialServices,
+    },
+    // revalidate every 1 minute
+    revalidate: 60 * 1,
+  };
+};
+
+export default function Home({
+  initialServices,
+}: InferGetServerSidePropsType<typeof getStaticProps>) {
   const searchRef = useRef<HTMLInputElement>(null);
 
+  const [services, setServices] = useState(initialServices);
   const [search, setSearch] = useState("");
   const [service, setService] = useState("");
   const [state, setState] = useState("");
@@ -29,7 +47,7 @@ export default function Home() {
     { skipEmptyString: true, skipNull: true },
   );
 
-  const { data: services } = useSWR(`/api/services?${query}`, fetcher);
+  const { data } = useSWR(`/api/services?${query}`, fetcher);
 
   let filterTimeout: NodeJS.Timeout;
   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -51,6 +69,14 @@ export default function Home() {
     setState("");
     setDistrict("");
   };
+
+  useEffect(() => {
+    if (data) {
+      setServices(data);
+    } else {
+      setServices(initialServices);
+    }
+  }, [data]);
 
   return (
     <div className="flex flex-col">
