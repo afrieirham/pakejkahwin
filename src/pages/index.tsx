@@ -172,8 +172,8 @@ export default function Home({
                           <ServiceLogo service={service} />
                         </div>
                         <div className="ml-4">
-                          <p className="font-medium text-gray-900">
-                            {service.name}
+                          <p className="font-medium capitalize text-gray-900">
+                            {service.name.toLowerCase()}
                           </p>
                         </div>
                       </div>
@@ -218,7 +218,9 @@ export default function Home({
             >
               <div className="flex justify-between">
                 <div>
-                  <p className="font-medium text-gray-900">{service.name}</p>
+                  <p className="font-medium capitalize text-gray-900">
+                    {service.name.toLowerCase()}
+                  </p>
                   <p className="text-sm text-gray-500">
                     {service.location.district}, {service.location.state}
                   </p>
