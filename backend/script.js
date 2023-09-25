@@ -55,5 +55,9 @@ const json = entries.map((e) => {
 });
 
 console.log(
-  util.inspect(json, { showHidden: false, depth: null, colors: true }),
+  util.inspect(JSON.stringify(json), {
+    showHidden: false,
+    depth: null,
+    colors: true,
+  }),
 );
