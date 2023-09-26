@@ -17,6 +17,7 @@ export const locations = [
       "Cheras",
       "Cyberjaya",
       "Dengkil",
+      "Gombak",
       "Hulu Langat",
       "Jenjarom",
       "Jeram",
@@ -528,4 +529,5 @@ export const servicesType = [
   { id: 6, label: "Pelamin & Deco", color: "fuchsia" },
   { id: 7, label: "Softwares", color: "yellow" },
   { id: 8, label: "Invitation Card", color: "sky" },
+  // { id: 9, label: "Entertainment", color: "rose" },
 ] as Service[];
