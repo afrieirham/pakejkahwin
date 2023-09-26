@@ -107,7 +107,7 @@ export default function Home({
             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
             placeholder="Search"
           />
-          <select
+          {/* <select
             id="service"
             name="service"
             value={service}
@@ -120,7 +120,7 @@ export default function Home({
             {servicesType.map((type) => (
               <option key={type.id}>{type.label}</option>
             ))}
-          </select>
+          </select> */}
           <select
             id="state"
             name="state"
