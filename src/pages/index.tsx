@@ -65,6 +65,7 @@ export default function Home({
       searchRef.current.value = "";
     }
 
+    setServices(initialServices);
     setSearch("");
     setService("");
     setState("");
@@ -73,7 +74,8 @@ export default function Home({
 
   useEffect(() => {
     if (data) {
-      setServices(data.reverse());
+      const dataCopy = [...data];
+      setServices(dataCopy.reverse());
     } else {
       setServices(initialServices);
     }
