@@ -42,3 +42,10 @@ export interface Social {
   name: string;
   link: string;
 }
+
+export interface AdvetisementResponse {
+  name: string;
+  role: string;
+  imageUrl: string;
+  link: string;
+}

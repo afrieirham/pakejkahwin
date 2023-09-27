@@ -1,6 +1,6 @@
 import SEOHead from "@/components/SEOHead";
 import { locations, servicesType } from "@/constants";
-import { ServiceResponse } from "@/types";
+import { AdvetisementResponse, ServiceResponse } from "@/types";
 import { GetStaticProps, InferGetServerSidePropsType } from "next";
 import { Source_Serif_4 } from "next/font/google";
 import Image from "next/image";
@@ -15,12 +15,17 @@ const fetcher: Fetcher<ServiceResponse[], string> = (url: string) =>
 
 export const getStaticProps: GetStaticProps<{
   initialServices: ServiceResponse[];
+  ads: AdvetisementResponse[];
 }> = async () => {
-  const res = await fetch("https://api.pakejkahwin.com/services");
-  const initialServices: ServiceResponse[] = await res.json();
+  const serviceRes = await fetch("https://api.pakejkahwin.com/services");
+  const initialServices: ServiceResponse[] = await serviceRes.json();
+
+  const advertisementRes = await fetch("https://api.pakejkahwin.com/ads");
+  const ads: AdvetisementResponse[] = await advertisementRes.json();
   return {
     props: {
       initialServices: initialServices.reverse(),
+      ads,
     },
     // revalidate every 1 minute
     revalidate: 60 * 1,
@@ -29,6 +34,7 @@ export const getStaticProps: GetStaticProps<{
 
 export default function Home({
   initialServices,
+  ads,
 }: InferGetServerSidePropsType<typeof getStaticProps>) {
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -160,6 +166,44 @@ export default function Home({
             Reset
           </button>
         </div>
+
+        {/* ads slot */}
+        {ads?.length > 0 && (
+          <div className="mx-auto max-w-6xl px-4">
+            <h1 className="text-xs">Sponsored</h1>
+            <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
+              {ads?.map((ad, i) => (
+                <div
+                  key={i}
+                  className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-3 py-2 shadow-sm focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 hover:border-gray-400"
+                >
+                  <div className="flex-shrink-0">
+                    <img
+                      className="h-10 w-10 rounded-full border border-primary object-cover"
+                      src={ad.imageUrl}
+                      alt=""
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <a
+                      href={ad.link}
+                      className="focus:outline-none"
+                      target="_blank"
+                    >
+                      <span className="absolute inset-0" aria-hidden="true" />
+                      <p className="text-sm font-medium text-gray-900">
+                        {ad.name}
+                      </p>
+                      <p className="truncate text-sm text-gray-500">
+                        {ad.role}
+                      </p>
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* desktop view */}
         <div className="mx-auto mb-16 mt-8 hidden max-w-6xl px-4 md:block">
