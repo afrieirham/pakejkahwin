@@ -310,7 +310,7 @@ const SocialIcon = ({ name }: { name: string }) => {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className={`icon icon-tabler icon-tabler-brand-facebook fill-none stroke-stone-500 ${size}`}
+        className={`icon icon-tabler icon-tabler-brand-facebook fill-none stroke-stone-500 hover:stroke-stone-800 ${size}`}
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         fill="none"
@@ -327,7 +327,7 @@ const SocialIcon = ({ name }: { name: string }) => {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className={`icon icon-tabler icon-tabler-brand-instagram fill-none stroke-stone-500 ${size}`}
+        className={`icon icon-tabler icon-tabler-brand-instagram fill-none stroke-stone-500 hover:stroke-stone-800 ${size}`}
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         fill="none"
@@ -346,7 +346,7 @@ const SocialIcon = ({ name }: { name: string }) => {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className={`icon icon-tabler icon-tabler-map-pin fill-none stroke-stone-500 ${size}`}
+        className={`icon icon-tabler icon-tabler-map-pin fill-none stroke-stone-500 hover:stroke-stone-800 ${size}`}
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         fill="none"
@@ -363,7 +363,7 @@ const SocialIcon = ({ name }: { name: string }) => {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className={`icon icon-tabler icon-tabler-brand-tiktok fill-none stroke-stone-500 ${size}`}
+        className={`icon icon-tabler icon-tabler-brand-tiktok fill-none stroke-stone-500 hover:stroke-stone-800 ${size}`}
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         fill="none"
@@ -379,7 +379,7 @@ const SocialIcon = ({ name }: { name: string }) => {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className={`icon icon-tabler icon-tabler-world fill-none stroke-stone-500 ${size}`}
+        className={`icon icon-tabler icon-tabler-world fill-none stroke-stone-500 hover:stroke-stone-800 ${size}`}
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         fill="none"
@@ -399,7 +399,7 @@ const SocialIcon = ({ name }: { name: string }) => {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className={`icon icon-tabler icon-tabler-brand-whatsapp fill-none stroke-stone-500 ${size}`}
+        className={`icon icon-tabler icon-tabler-brand-whatsapp fill-none stroke-stone-500 hover:stroke-stone-800 ${size}`}
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         fill="none"
