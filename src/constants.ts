@@ -382,6 +382,7 @@ export const locations = [
       "Bukit Mertajam",
       "Butterworth",
       "Gelugor",
+      "George Town",
       "Jelutong",
       "Kepala Batas",
       "Kubang Semang",
