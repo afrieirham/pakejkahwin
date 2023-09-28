@@ -20,11 +20,11 @@ const json = entries.map((e) => {
     id: props[0],
     name: props[3],
     location: {
-      district: props[6],
-      state: props[5],
+      district: props[7],
+      state: props[6],
     },
     typeId: servicesType.find((s) => s.label === props[4]).id,
-    image: props[9],
+    image: props[5],
     socials: [
       {
         name: "instagram",
@@ -32,11 +32,11 @@ const json = entries.map((e) => {
       },
       {
         name: "whatsapp",
-        link: `https://wa.me/${props[8]}`,
+        link: `https://wa.me/${props[9]}`,
       },
       {
         name: "maps",
-        link: props[7],
+        link: props[8],
       },
       {
         name: "tiktok",
@@ -48,7 +48,7 @@ const json = entries.map((e) => {
       },
       {
         name: "facebook",
-        link: props[13],
+        link: props[13].trim(),
       },
     ],
   };
