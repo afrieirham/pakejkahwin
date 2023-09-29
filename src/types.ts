@@ -44,6 +44,7 @@ export interface Social {
 }
 
 export interface AdvetisementResponse {
+  id: number;
   name: string;
   role: string;
   imageUrl: string;

@@ -172,16 +172,16 @@ export default function Home({
           <div className="mx-auto max-w-6xl px-4">
             <h1 className="text-xs">Sponsored</h1>
             <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
-              {ads?.map((ad, i) => (
+              {ads?.map((ad) => (
                 <div
-                  key={i}
+                  key={ad.id}
                   className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-3 py-2 shadow-sm focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 hover:border-gray-400"
                 >
                   <div className="flex-shrink-0">
                     <img
                       className="h-10 w-10 rounded-full border border-primary object-cover"
                       src={ad.imageUrl}
-                      alt=""
+                      alt={`${ad.name} logo`}
                     />
                   </div>
                   <div className="min-w-0 flex-1">
