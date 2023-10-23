@@ -2,6 +2,7 @@ import { Service } from "./types";
 
 export const locations = [
   {
+    slug: "selangor",
     state: "Selangor",
     district: [
       "Ampang",
@@ -56,14 +57,17 @@ export const locations = [
     ],
   },
   {
+    slug: "kuala-lumpur",
     state: "WP Kuala Lumpur",
     district: ["Kuala Lumpur", "Setapak"],
   },
   {
+    slug: "putrajaya",
     state: "WP Putrajaya",
     district: ["Putrajaya"],
   },
   {
+    slug: "johor",
     state: "Johor",
     district: [
       "Ayer Baloi",
@@ -123,6 +127,7 @@ export const locations = [
     ],
   },
   {
+    slug: "kedah",
     state: "Kedah",
     district: [
       "Alor Setar",
@@ -162,6 +167,7 @@ export const locations = [
     ],
   },
   {
+    slug: "kelantan",
     state: "Kelantan",
     district: [
       "Ayer Lanas",
@@ -189,6 +195,7 @@ export const locations = [
     ],
   },
   {
+    slug: "melaka",
     state: "Melaka",
     district: [
       "Alor Gajah",
@@ -210,6 +217,7 @@ export const locations = [
     ],
   },
   {
+    slug: "negeri-sembilan",
     state: "Negeri Sembilan",
     district: [
       "Bahau",
@@ -241,6 +249,7 @@ export const locations = [
     ],
   },
   {
+    slug: "pahang",
     state: "Pahang",
     district: [
       "Balok",
@@ -284,6 +293,7 @@ export const locations = [
     ],
   },
   {
+    slug: "perak",
     state: "Perak",
     district: [
       "Ayer Tawar",
@@ -361,6 +371,7 @@ export const locations = [
     ],
   },
   {
+    slug: "perlis",
     state: "Perlis",
     district: [
       "Arau",
@@ -372,6 +383,7 @@ export const locations = [
     ],
   },
   {
+    slug: "pulau-pinang",
     state: "Pulau Pinang",
     district: [
       "Ayer Itam",
@@ -400,6 +412,7 @@ export const locations = [
     ],
   },
   {
+    slug: "sarawak",
     state: "Sarawak",
     district: [
       "Asajaya",
@@ -452,6 +465,7 @@ export const locations = [
     ],
   },
   {
+    slug: "terengganu",
     state: "Terengganu",
     district: [
       "Ajil",
@@ -479,10 +493,12 @@ export const locations = [
     ],
   },
   {
+    slug: "labuan",
     state: "WP Labuan",
     district: ["Labuan"],
   },
   {
+    slug: "sabah",
     state: "Sabah",
     district: [
       "Beaufort",
