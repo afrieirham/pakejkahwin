@@ -35,7 +35,7 @@ function Listings({
     { skipEmptyString: true, skipNull: true },
   );
 
-  const { data } = useSWR(`/api/services?${query}`, fetcher);
+  const { data, isLoading } = useSWR(`/api/services?${query}`, fetcher);
 
   let filterTimeout: NodeJS.Timeout;
   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -156,7 +156,11 @@ function Listings({
       )}
 
       {/* desktop view */}
-      <div className="mx-auto mb-16 mt-8 hidden max-w-6xl px-4 md:block">
+      <div
+        className={`mx-auto mb-16 mt-8 hidden max-w-6xl px-4 md:block ${
+          isLoading ? "animate-pulse" : ""
+        }`}
+      >
         <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
           <table className="min-w-full divide-y divide-gray-300">
             <tbody className="divide-y divide-gray-200 bg-white">
@@ -203,7 +207,11 @@ function Listings({
       </div>
 
       {/* mobile view */}
-      <div className="mx-4 mb-16 mt-6 flex flex-col space-y-2 md:hidden">
+      <div
+        className={`mx-4 mb-16 mt-6 flex flex-col space-y-2 md:hidden ${
+          isLoading ? "animate-pulse" : ""
+        }`}
+      >
         {services?.map((service) => (
           <div
             key={service.id}
